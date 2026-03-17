@@ -1,5 +1,4 @@
-# ---- Build stage ----
-FROM eclipse-temurin:25-jdk-alpine AS builder
+FROM eclipse-temurin:25-jdk-alpine
 WORKDIR /app
 
 COPY mvnw .
@@ -8,5 +7,4 @@ COPY pom.xml .
 RUN ./mvnw dependency:go-offline -q
 
 COPY src src
-FROM builder AS test
 CMD ["./mvnw", "test"]
